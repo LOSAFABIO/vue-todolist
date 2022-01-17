@@ -27,19 +27,51 @@ del todo corrispondente (se done era uguale a false, impostare true e viceversa)
 let app = new Vue ({
     el   : "#myApp",
     data :{
+        active      : false,
         valoreInput : "",
-        indice: 0,
-        listaTodo : [
-           
+        listaTodo   : [
+            {
+                text: "fare il corso",
+                done: false
+            },
+            {
+                text: "fare l'esercizio",
+                done: false
+            },
+            {
+                text: "preparare cena",
+                done: false
+            },
+            {
+                text: "pulire casa",
+                done: false
+            },
+            {
+                text: "alzarsi presto",
+                done: false
+            }
 
         ]
     },
     methods:{
-        aggiungi: function(elemento){
-            this.listaTodo.push(elemento)
+        aggiungi: function(){
+            this.listaTodo.push({
+                text : this.valoreInput,
+                done: false
+            })
+            this.valoreInput = "";  
         },
-        rimuovi: function(indice){
-            this.listaTodo.splice(indice, 1);
+        fatto: function(indice){
+            if(this.listaTodo[indice].done == true){
+                return "sbarrato"
+            }
+        },
+        verificato: function(indice){
+            if(this.listaTodo[indice].done == true){
+                this.listaTodo[indice].done = false
+            } else { 
+                this.listaTodo[indice].done = true
+            }
         }
     }
-})
+})  

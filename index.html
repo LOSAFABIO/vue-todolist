@@ -15,14 +15,13 @@
         <div class="container">
             <div class="row justify-content-center">
                 <h1>TO DO LIST</h1>
-                <!-- v-model="valoreInput" placeholder="Aggiungi qui" @keyup.enter="listaTodo.push(valoreInput)" -->
                 <input type="text" class="w_800" v-model="valoreInput" @keyup.enter="aggiungi()">
                 <button class="w_100" @click="aggiungi()">Aggiungi!</button>
                 <div class="row lista">
                     <ul>
                         <li v-for="(elemento, indice) in listaTodo" >
-                            {{valoreInput}}
-                            <i @click="rimuovi()" class="text-end fas fa-times"></i>
+                            <span :class="fatto(indice)" @click="verificato(indice)">{{elemento.text}}</span>
+                            <i @click="listaTodo.splice(indice, 1)" class="text-end fas fa-times"></i>
                         </li>
                     </ul>
                 </div>
